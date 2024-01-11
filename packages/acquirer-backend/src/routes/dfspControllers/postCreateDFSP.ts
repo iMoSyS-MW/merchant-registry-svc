@@ -84,7 +84,7 @@ export async function postCreateDFSP (req: AuthRequest, res: Response) {
       'postCreateDFSP',
       'Error creating DFSP: Invalid request body',
       'DFSPEntity',
-      {}, {}, req.user
+      {}, {}, req.user || null
     )
     return res.status(400).send({
       message: 'Invalid request body', errors: parsedBody.error.formErrors.fieldErrors
@@ -111,7 +111,7 @@ export async function postCreateDFSP (req: AuthRequest, res: Response) {
       'postCreateDFSP',
       'DFSP created successfully',
       'DFSPEntity',
-      {}, {}, req.user
+      {}, {}, req.user || null
     )
 
     logger.info(`DFSP created: ${newDFSP.id}`)
@@ -125,7 +125,7 @@ export async function postCreateDFSP (req: AuthRequest, res: Response) {
       'postCreateDFSP',
       `Error creating DFSP: ${e as string}`,
       'DFSPEntity',
-      {}, {}, req.user
+      {}, {}, req.user || null
     )
 
     res.status(500).send({ message: 'Internal Server Error' })
